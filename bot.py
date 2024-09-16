@@ -4,8 +4,13 @@ from discord.ext import commands
 from datetime import datetime, date
 import os
 from discord.ui import Button, View
+from server import keep_alive
+from dotenv import load_dotenv
 import botwo
 import botthree  # Импортируем файл botthree.py
+
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
 
 # Глобальная переменная
 allow_same_day = False
@@ -275,7 +280,8 @@ async def show_list(ctx):
         await ctx.send("Список пуст. The list is empty.")
     conn.close()
 
-
+keep_alive()
 
 # Запуск бота
-bot.run('MTI3OTQ4MjI0ODM1NzIyMDUxOQ.GYeal9.sI_5Bft78SIn3b7zV8oq-aKHh4nojYrV7e4NfQ')  # Замените на реальный токен
+bot.run(TOKEN)  # Используем загруженный токен из .env
+  # Замените на реальный токен
